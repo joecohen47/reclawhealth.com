@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reclaw · AI billing agent for mental health practices</title>
+<meta name="description" content="Reclaw works denied, rejected, unanswered and paid insurance claims end to end for small mental health practices. The biller approves every step.">
+<meta property="og:title" content="Reclaw · AI billing agent for mental health practices">
+<meta property="og:description" content="Reclaw works the claim. You approve every step.">
+<meta property="og:image" content="img/plan.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0f172a; --muted: #475569; --faint: #64748b; --line: #e2e8f0;
+    --bg: #ffffff; --soft: #f5f7f8; --brand: #0f6e62; --brand-ink: #0b544b; --brand-soft: #e3f2ef;
+    --judge: #6d28d9; --judge-soft: #f1ecff;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; font-family: Inter, system-ui, -apple-system, sans-serif; color: var(--ink); background: var(--bg);
+         line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  a { color: var(--brand); }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+  header.nav { position: sticky; top: 0; background: rgba(255,255,255,.92); backdrop-filter: blur(8px);
+               border-bottom: 1px solid var(--line); z-index: 10; }
+  header.nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+  .logo { font-weight: 700; color: var(--brand); font-size: 20px; text-decoration: none; letter-spacing: -.01em; }
+  header.nav nav a { color: var(--muted); text-decoration: none; margin-left: 22px; font-size: 15px; }
+  header.nav nav a.cta { color: #fff; background: var(--brand); padding: 8px 14px; border-radius: 8px; }
+  .hero { padding: 80px 0 48px; }
+  .eyebrow { display: inline-block; font-size: 13px; font-weight: 600; color: var(--brand-ink); background: var(--brand-soft);
+             padding: 4px 10px; border-radius: 999px; margin-bottom: 18px; }
+  h1 { font-size: clamp(34px, 5vw, 54px); line-height: 1.08; letter-spacing: -.025em; margin: 0 0 18px; max-width: 820px; }
+  .lede { font-size: 20px; color: var(--muted); max-width: 700px; margin: 0 0 28px; }
+  .buttons { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn { display: inline-block; padding: 12px 18px; border-radius: 10px; font-weight: 600; text-decoration: none; font-size: 15px; }
+  .btn.primary { background: var(--brand); color: #fff; }
+  .btn.ghost { border: 1px solid var(--line); color: var(--ink); }
+  .video { margin-top: 44px; border-radius: 14px; overflow: hidden; border: 1px solid var(--line);
+           box-shadow: 0 20px 50px -20px rgba(15,23,42,.25); background: #000; }
+  .video video { display: block; width: 100%; height: auto; }
+  .caption { font-size: 13px; color: var(--faint); margin-top: 10px; }
+  section { padding: 72px 0; }
+  section.alt { background: var(--soft); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  h2 { font-size: clamp(26px, 3.4vw, 36px); letter-spacing: -.02em; line-height: 1.15; margin: 0 0 14px; }
+  .sub { font-size: 18px; color: var(--muted); max-width: 720px; margin: 0 0 36px; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .card { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 22px; }
+  .card h3 { margin: 0 0 6px; font-size: 17px; }
+  .card p { margin: 0; color: var(--muted); font-size: 15px; }
+  .steps { counter-reset: s; display: grid; gap: 56px; }
+  .step { display: grid; grid-template-columns: 1fr 1.35fr; gap: 40px; align-items: center; }
+  .step:nth-child(even) .shot { order: -1; }
+  .step .num { font-size: 13px; font-weight: 700; color: var(--brand); letter-spacing: .06em; text-transform: uppercase; }
+  .step h3 { font-size: 24px; letter-spacing: -.015em; margin: 6px 0 10px; line-height: 1.2; }
+  .step p { color: var(--muted); margin: 0 0 10px; }
+  .step ul { color: var(--muted); padding-left: 18px; margin: 0; }
+  .step li { margin: 4px 0; }
+  .shot { border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: #fff;
+          box-shadow: 0 14px 40px -22px rgba(15,23,42,.35); max-height: 460px; }
+  .shot img { display: block; width: 100%; height: auto; }
+  .rules { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px 28px; margin: 0; padding: 0; list-style: none; }
+  .rules li { padding-left: 28px; position: relative; color: var(--ink); }
+  .rules li::before { content: "✓"; position: absolute; left: 0; top: 0; color: var(--brand); font-weight: 700; }
+  .rules li span { display: block; color: var(--muted); font-size: 15px; }
+  .status { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .status .card .tag { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; }
+  .tag.done { color: var(--brand); } .tag.next { color: #b45309; } .tag.later { color: var(--faint); }
+  .status ul { margin: 8px 0 0; padding-left: 18px; color: var(--muted); font-size: 15px; }
+  .status li { margin: 4px 0; }
+  .founder { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+  .contact { background: var(--brand); color: #fff; border-radius: 16px; padding: 40px; }
+  .contact h2 { color: #fff; }
+  .contact p { color: #d7ece8; margin: 0 0 22px; }
+  .contact .btn { background: #fff; color: var(--brand-ink); }
+  footer { padding: 32px 0 48px; color: var(--faint); font-size: 13px; }
+  footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  @media (max-width: 860px) {
+    .grid3, .status, .founder { grid-template-columns: 1fr; }
+    .step { grid-template-columns: 1fr; gap: 20px; }
+    .step:nth-child(even) .shot { order: 0; }
+    .rules { grid-template-columns: 1fr; }
+    header.nav nav a:not(.cta) { display: none; }
+    .hero { padding: 48px 0 32px; }
+    section { padding: 52px 0; }
+    .wrap { padding: 0 16px; }
+    .contact { padding: 28px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="#">Reclaw</a>
+    <nav>
+      <a href="#how">How it works</a>
+      <a href="#trust">Safety</a>
+      <a href="#status">Status</a>
+      <a class="cta" href="#contact">Talk to us</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap hero">
+    <span class="eyebrow">For mental health practices that bill insurance</span>
+    <h1>The AI billing agent that works the claim. You approve every step.</h1>
+    <p class="lede">Reclaw works denied, rejected, unanswered and paid claims end to end: it reads what the payer said,
+      finds the cause, and prepares the fix, the appeal or the posting. The biller approves it with one click, and Reclaw does the rest.</p>
+    <div class="buttons">
+      <a class="btn primary" href="#walkthrough">Watch the walkthrough</a>
+      <a class="btn ghost" href="#contact">Talk to the founder</a>
+    </div>
+
+    <div class="video" id="walkthrough">
+      <video controls playsinline preload="metadata" poster="img/claims.jpg">
+        <source src="reclaw-walkthrough.mp4" type="video/mp4">
+      </video>
+    </div>
+    <p class="caption">Shown with sample claims in a copy of a practice system and payer portal. No real patient data.</p>
+  </div>
+
+  <section class="alt">
+    <div class="wrap">
+      <h2>Small practices lose real money to claims nobody gets to.</h2>
+      <p class="sub">Most solo and small-group therapy practices bill insurance through SimplePractice with a part-time or
+        outsourced biller. Every stuck claim is a slow, manual project, so the backlog grows and deadlines pass.</p>
+      <div class="grid3">
+        <div class="card"><h3>Every denial is a research job</h3>
+          <p>Read the remit codes, work out the cause, check the chart, then fix the claim or write a letter.</p></div>
+        <div class="card"><h3>Then it's portal work</h3>
+          <p>Log into the payer portal, fill the form, upload records, write a note, and remember to chase it weeks later.</p></div>
+        <div class="card"><h3>Money slips away quietly</h3>
+          <p>Appeal windows and filing deadlines close on claims that were never worked, and payment posting eats the rest of the week.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="how">
+    <div class="wrap">
+      <h2>How Reclaw works</h2>
+      <p class="sub">Reclaw connects to the practice system and the payer portals, the same places a biller works today.</p>
+
+      <div class="steps">
+        <div class="step">
+          <div>
+            <div class="num">01 · Triage</div>
+            <h3>Every claim that needs attention, already analyzed.</h3>
+            <p>Denials, rejections, claims the payer never answered, and payments to post, each one row with what the
+              payer said, the likely cause and the next step.</p>
+            <ul>
+              <li>Filters for Urgent, Approve, Needs you and Waiting</li>
+              <li>Simple fixes can be approved straight from the list</li>
+            </ul>
+          </div>
+          <div class="shot"><img src="img/claims.jpg" alt="Reclaw claims list with the next step for each claim" loading="lazy"></div>
+        </div>
+
+        <div class="step">
+          <div>
+            <div class="num">02 · One approval</div>
+            <h3>A complete plan, with the source for every change.</h3>
+            <p>Correct and resubmit, appeal through the payer portal with records attached, post the payment, bill the
+              client or the other plan. One approval covers every step.</p>
+            <ul>
+              <li>Each field change cites the exact payer remark or chart line</li>
+              <li>Code checks every quote: an invented reason shows as "not found"</li>
+              <li>Letters are written first, so you approve the actual text</li>
+            </ul>
+          </div>
+          <div class="shot"><img src="img/plan.jpg" alt="Reclaw plan to correct a denied claim, with sources for each change" loading="lazy"></div>
+        </div>
+
+        <div class="step">
+          <div>
+            <div class="num">03 · Your judgment</div>
+            <h3>It knows when a person has to decide.</h3>
+            <p>Did the client agree to pay? Which record is right? When a call belongs to a person, Reclaw asks one
+              question with a few answers, then carries out the one you pick.</p>
+            <ul>
+              <li>Routing comes from the payer's codes and written rules, not from the model</li>
+              <li>Every result is checked in the practice system or portal afterward</li>
+            </ul>
+          </div>
+          <div class="shot"><img src="img/judgment.jpg" alt="Reclaw asking the biller to bill the client or write off a balance" loading="lazy"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt" id="trust">
+    <div class="wrap">
+      <h2>Built so a biller can trust it.</h2>
+      <p class="sub">Reclaw does the work, but nothing reaches a payer or a client without a person's approval, and every action leaves a record.</p>
+      <ul class="rules">
+        <li>Nothing happens without approval<span>Every plan waits for the biller. Anything with a warning never gets a one-click approve.</span></li>
+        <li>Checked after every step<span>Only the approved fields changed, exactly one submission, the right documents attached.</span></li>
+        <li>See what it did<span>Each page the agent opened and the exact text it typed, kept on the claim's history.</span></li>
+        <li>Hard rules it won't break<span>It never bills a client for an amount the payer says the practice owns, and never appeals a closed window.</span></li>
+        <li>A stop switch<span>One switch stops all agents. Anything handled outside Reclaw can be marked completed manually.</span></li>
+        <li>An audit record<span>An append-only log of everything people and Reclaw did, ready to export.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="status">
+    <div class="wrap">
+      <h2>Where we are</h2>
+      <p class="sub">Reclaw runs today against a copy of SimplePractice and payer portals with synthetic patients. In our internal
+        tests (25 realistic claim scenarios), it chose the expected action in 22, an acceptable one in 23, and never took a forbidden action.</p>
+      <div class="status">
+        <div class="card"><span class="tag done">Working now</span>
+          <ul>
+            <li>Denials, rejections, unanswered claims and payment posting</li>
+            <li>Corrected claims, appeals and retro-auth requests</li>
+            <li>Approval, verification, history and audit record</li>
+          </ul></div>
+        <div class="card"><span class="tag next">Next</span>
+          <ul>
+            <li>Design-partner practices and billers</li>
+            <li>Production hosting under a BAA</li>
+            <li>Live SimplePractice and payer connections</li>
+          </ul></div>
+        <div class="card"><span class="tag later">Later</span>
+          <ul>
+            <li>Other EHRs</li>
+            <li>Payer phone calls and fax</li>
+            <li>Psychiatry and testing claims</li>
+          </ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt">
+    <div class="wrap founder">
+      <div>
+        <h2>The founder</h2>
+        <p class="sub" style="margin-bottom:0">Joe Cohen has spent the last few years building clinical AI on the insurance side of prior
+          authorization, so he knows how payers decide what gets paid. Reclaw puts that on the practice's side.</p>
+      </div>
+      <div class="card">
+        <h3>We're talking to billers now</h3>
+        <p>If you bill for therapists, psychologists or counselors, in-house or for many practices, we'd love 15 minutes
+          to hear how you work denials and follow-ups today.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <div class="contact">
+        <h2>Talk to us</h2>
+        <p>Billers, practice owners and design partners: get in touch.</p>
+        <a class="btn" href="mailto:joecohen694@gmail.com?subject=Reclaw">joecohen694@gmail.com</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Reclaw Health</span>
+    <span>Not yet connected to real payers or patient data.</span>
+  </div>
+</footer>
+
+</body>
+</html>
